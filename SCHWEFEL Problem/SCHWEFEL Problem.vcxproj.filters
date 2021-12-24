@@ -20,10 +20,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="problem.h">
+    <ClInclude Include="..\problem_interface.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="..\problem_interface.h">
+    <ClInclude Include="problem.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

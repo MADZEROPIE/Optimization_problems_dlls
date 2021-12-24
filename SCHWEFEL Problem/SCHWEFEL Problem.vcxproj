@@ -21,9 +21,10 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{2b0fb80b-2c82-49a6-9fb1-a6292a4f7137}</ProjectGuid>
-    <RootNamespace>GoldsteinPricefunction</RootNamespace>
+    <ProjectGuid>{f0fff804-4ca5-4a7f-9625-d93fb876d344}</ProjectGuid>
+    <RootNamespace>SCHWEFEL Problem</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>SCHWEFEL Problem</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
