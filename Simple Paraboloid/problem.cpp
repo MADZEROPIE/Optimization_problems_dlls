@@ -62,10 +62,8 @@ int TParaboloidProblem::GetOptimumValue(double& value) const
 {
   if (!mIsInitialized)
     return IProblem::UNDEFINED;
-  double res = 0;
-  for (int i = 0; i < mDimension; ++i)
-      res += 2 * (-2.2);
-  value = res;
+  
+  value = 0.0;
   return IProblem::OK;
 }
 
@@ -76,7 +74,7 @@ int TParaboloidProblem::GetOptimumPoint(double* point) const
     return IProblem::UNDEFINED;
 
   for (int i = 0; i < mDimension; ++i) {
-      point[i] = -2.2;
+      point[i] = 0;
   }
 
   return IProblem::OK;

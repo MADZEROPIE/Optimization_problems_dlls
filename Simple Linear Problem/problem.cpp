@@ -63,7 +63,10 @@ int TLinearProblem::GetOptimumValue(double& value) const
   if (!mIsInitialized)
     return IProblem::UNDEFINED;
 
-  value = 0.0;
+  double res = 0;
+  for (int i = 0; i < mDimension; ++i)
+      res += 2 * (-2.2);
+  value = res;
   return IProblem::OK;
 }
 
@@ -74,7 +77,7 @@ int TLinearProblem::GetOptimumPoint(double* point) const
     return IProblem::UNDEFINED;
 
   for (int i = 0; i < mDimension; ++i) {
-      point[i] = 0;
+      point[i] = -2.2;
   }
 
   return IProblem::OK;
@@ -103,7 +106,7 @@ double TLinearProblem::CalculateFunctionals(const double* x, int fNumber)
 {
   double sum = 0.;
   for (int i = 0; i < mDimension; ++i) {
-      sum += x[i] * x[i];
+      sum += 2 * x[i];
   }
   return sum;
 }
