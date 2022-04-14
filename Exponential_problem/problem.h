@@ -1,5 +1,5 @@
-#ifndef __GOLDSTEINPROBLEM_H__
-#define __GOLDSTEINPROBLEM_H__
+#ifndef __EXPONENTIALPROBLEM_H__
+#define __EXPONENTIALPROBLEM_H__
 
 #include "../problem_interface.h"
 
@@ -36,5 +36,5 @@ public:
 extern "C" LIB_EXPORT_API IProblem * create();
 extern "C" LIB_EXPORT_API void destroy(IProblem * ptr);
 
-#endif
+#endif //__EXPONENTIALPROBLEM_H__
 // - end of file ----------------------------------------------------------------------------------

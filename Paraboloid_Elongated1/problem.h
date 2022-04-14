@@ -1,5 +1,5 @@
-#ifndef __PARABOLIDPROBLEM_H__
-#define __PARABOLIDPROBLEM_H__
+#ifndef __ELONPARABOLIDPROBLEM_H__
+#define __ELONPARABOLIDPROBLEM_H__
 
 #include "../problem_interface.h"
 
@@ -36,5 +36,5 @@ public:
 extern "C" LIB_EXPORT_API IProblem * create();
 extern "C" LIB_EXPORT_API void destroy(IProblem * ptr);
 
-#endif
+#endif // __ELONPARABOLIDPROBLEM_H__
 // - end of file ----------------------------------------------------------------------------------
