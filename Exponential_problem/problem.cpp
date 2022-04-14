@@ -4,22 +4,22 @@
 #include <math.h>
 
 // ------------------------------------------------------------------------------------------------
-TParaboloidElongated1Problem::TParaboloidElongated1Problem()
+TExponentialProblem::TExponentialProblem()
 {
   mIsInitialized = false;
   mDimension = 2;
 }
 
 // ------------------------------------------------------------------------------------------------
-int TParaboloidElongated1Problem::SetConfigPath(const std::string& configPath)
+int TExponentialProblem::SetConfigPath(const std::string& configPath)
 {
   return IProblem::OK;
 }
 
 // ------------------------------------------------------------------------------------------------
-int TParaboloidElongated1Problem::SetDimension(int dimension)
+int TExponentialProblem::SetDimension(int dimension)
 {
-  if (dimension == 2)
+  if (dimension > 0 && dimension <= mMaxDimension)
   {
     mDimension = dimension;
     return IProblem::OK;
@@ -29,13 +29,13 @@ int TParaboloidElongated1Problem::SetDimension(int dimension)
 }
 
 // ------------------------------------------------------------------------------------------------
-int TParaboloidElongated1Problem::GetDimension() const
+int TExponentialProblem::GetDimension() const
 {
   return mDimension;
 }
 
 // ------------------------------------------------------------------------------------------------
-int TParaboloidElongated1Problem::Initialize()
+int TExponentialProblem::Initialize()
 {
   if (mDimension > 0)
   {
@@ -47,67 +47,70 @@ int TParaboloidElongated1Problem::Initialize()
 }
 
 // ------------------------------------------------------------------------------------------------
-void TParaboloidElongated1Problem::GetBounds(double* lower, double* upper)
+void TExponentialProblem::GetBounds(double* lower, double* upper)
 {
   if (mIsInitialized)
     for (int i = 0; i < mDimension; i++)
     {
-      lower[i] = -2.2;
-      upper[i] = 1.8;
+      lower[i] = -8;
+      upper[i] = 8;
     }
 }
 
 // ------------------------------------------------------------------------------------------------
-int TParaboloidElongated1Problem::GetOptimumValue(double& value) const
-{
-  if (!mIsInitialized)
-    return IProblem::UNDEFINED;
-  
-  value = 0.0;
-  return IProblem::OK;
-}
-
-// ------------------------------------------------------------------------------------------------
-int TParaboloidElongated1Problem::GetOptimumPoint(double* point) const
+int TExponentialProblem::GetOptimumValue(double& value) const
 {
   if (!mIsInitialized)
     return IProblem::UNDEFINED;
 
-  for (int i = 0; i < mDimension; ++i) {
-      point[i] = 0;
-  }
+  value = -2.0;
+  return IProblem::OK;
+}
+
+// ------------------------------------------------------------------------------------------------
+int TExponentialProblem::GetOptimumPoint(double* point) const
+{
+  if (!mIsInitialized)
+    return IProblem::UNDEFINED;
+
+  point[0] = 2;
+  point[1] = 2;
 
   return IProblem::OK;
 }
 
 // ------------------------------------------------------------------------------------------------
-int TParaboloidElongated1Problem::GetNumberOfFunctions() const
-{
-  return 2;
-}
-
-// ------------------------------------------------------------------------------------------------
-int TParaboloidElongated1Problem::GetNumberOfConstraints() const
-{
-  return 0;
-}
-
-// ------------------------------------------------------------------------------------------------
-int TParaboloidElongated1Problem::GetNumberOfCriterions() const
+int TExponentialProblem::GetNumberOfFunctions() const
 {
   return 1;
 }
 
 // ------------------------------------------------------------------------------------------------
-double TParaboloidElongated1Problem::CalculateFunctionals(const double* x, int fNumber)
+int TExponentialProblem::GetNumberOfConstraints() const
 {
-  double sum = 0.;
-  sum = 10 * x[0] * x[0] + x[1] * x[1];
-  return sum;
+  return 0;
 }
 
 // ------------------------------------------------------------------------------------------------
-TParaboloidElongated1Problem::~TParaboloidElongated1Problem()
+int TExponentialProblem::GetNumberOfCriterions() const
+{
+  return 1;
+}
+
+// ------------------------------------------------------------------------------------------------
+double TExponentialProblem::CalculateFunctionals(const double* x, int fNumber)
+{
+  double res = 0.;
+  double exp1 = -0.5 * exp((-(x[0] + 2) * (x[0] + 2) - (x[1] + 2) * (x[1] + 2)) / 2);
+  double exp2 = - exp((-(x[0] + 2) * (x[0] + 2) - (x[1] - 2) * (x[1] - 2)) / 2);
+  double exp3 = -1.5 * exp((-(x[0] - 2) * (x[0] - 2) - (x[1] + 2) * (x[1] + 2)) / 2);
+  double exp4 = -2.0 * exp((-(x[0] - 2) * (x[0] - 2) - (x[1] - 2) * (x[1] - 2)) / 2);
+  res = exp1 + exp2 + exp3 + exp4;
+  return res;
+}
+
+// ------------------------------------------------------------------------------------------------
+TExponentialProblem::~TExponentialProblem()
 {
 
 }
@@ -115,7 +118,7 @@ TParaboloidElongated1Problem::~TParaboloidElongated1Problem()
 // ------------------------------------------------------------------------------------------------
 LIB_EXPORT_API IProblem* create()
 {
-  return new TParaboloidElongated1Problem();
+  return new TExponentialProblem();
 }
 
 // ------------------------------------------------------------------------------------------------
